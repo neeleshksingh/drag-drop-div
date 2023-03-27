@@ -1,0 +1,50 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    gap: 50px;
+}
+.flex-row{
+    display: flex;
+}
+.flex-col{
+    display: flex;
+    flex-direction: column;
+}
+table,tr,td{
+    border: 1px solid;
+    border-collapse: collapse;
+}
+table{
+    width: 40%;
+    height: 465px;
+}
+.box{
+    border: none;
+    height: 80px;
+    width: 80px;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    cursor: grab;
+    transition: all 0.5s ease-in-out;
+}
+.dragging {
+    opacity: 0.5;
+}
+.hover {
+    background-color: #ddd;
+}
+#undo-button{
+    height: 2em;
+    width: 50px;
+    cursor: pointer;
+}
