@@ -1,25 +1,25 @@
 const boxes = document.querySelectorAll('.box');
 let drag = null;
 const array = [];
-let one=document.getElementById('one')
-one.style.background='rgb(214, 177, 177)'
-let two=document.getElementById('two')
-two.style.background='lightblue'
-let three=document.getElementById('three')
-three.style.background=' lightcyan'
-let four=document.getElementById('four')
-four.style.background='lightgoldenrodyellow'
-let five=document.getElementById('five')
-five.style.background='lightgreen'
-let six=document.getElementById('six')
-six.style.background='lightpink'
-let seven=document.getElementById('seven')
-seven.style.background='lightsalmon'
-let eight=document.getElementById('eight')
-eight.style.background='lightseagreen'
-let nine=document.getElementById('nine')
-nine.style.background='black'
-nine.style.color='white'
+let one = document.getElementById('one')
+one.style.background = 'rgb(214, 177, 177)'
+let two = document.getElementById('two')
+two.style.background = 'lightblue'
+let three = document.getElementById('three')
+three.style.background = ' lightcyan'
+let four = document.getElementById('four')
+four.style.background = 'lightgoldenrodyellow'
+let five = document.getElementById('five')
+five.style.background = 'lightgreen'
+let six = document.getElementById('six')
+six.style.background = 'lightpink'
+let seven = document.getElementById('seven')
+seven.style.background = 'lightsalmon'
+let eight = document.getElementById('eight')
+eight.style.background = 'lightseagreen'
+let nine = document.getElementById('nine')
+nine.style.background = 'black'
+nine.style.color = 'white'
 
 
 
@@ -77,29 +77,28 @@ function dragEnd(e) {
 }
 
 function animateBoxMove(src, dest) {
-    console.log(src.style.background,dest)
-    if(src.style.background=='black')
-    {
-        let color1=src.style.background
-        let color2=dest.style.background
-        src.style.background=color2
-        dest.style.background=color1
-        dest.style.color='white'
-    }
-    else if(dest.style.background=='black'){
-        let color1=src.style.background
-        let color2=dest.style.background
-        src.style.background=color2
-        src.style.color='white'
-        dest.style.background=color1
-    }
-    else{
-        let color1=src.style.background
-        let color2=dest.style.background
-        src.style.background=color2
-        dest.style.background=color1
+  console.log(src.style.background, dest)
+  if (src.style.background == 'black') {
+    let color1 = src.style.background
+    let color2 = dest.style.background
+    src.style.background = color2
+    dest.style.background = color1
+    dest.style.color = 'white'
+  }
+  else if (dest.style.background == 'black') {
+    let color1 = src.style.background
+    let color2 = dest.style.background
+    src.style.background = color2
+    src.style.color = 'white'
+    dest.style.background = color1
+  }
+  else {
+    let color1 = src.style.background
+    let color2 = dest.style.background
+    src.style.background = color2
+    dest.style.background = color1
 
-    }
+  }
   const curr = src.getBoundingClientRect();
   const tar = dest.getBoundingClientRect();
   const xcord = tar.left - curr.left;
@@ -126,4 +125,29 @@ function undoLastAction() {
       animateBoxMove(targetbox, currBox);
     }
   }
+}
+
+const addNewButton = document.getElementById('add-row');
+addNewButton.addEventListener('click', addNewRow);
+
+function addBox(cell, text, color) {
+  const div = document.createElement('div');
+  div.classList.add('box', 'flex-row');
+  div.draggable = true;
+  div.textContent = text;
+  div.style.background = color;
+  cell.appendChild(div);
+  div.addEventListener('dragstart', dragStart);
+  div.addEventListener('dragenter', dragEnter);
+  div.addEventListener('dragover', dragOver);
+  div.addEventListener('dragleave', dragLeave);
+  div.addEventListener('drop', dragDrop);
+  div.addEventListener('dragend', dragEnd);
+}
+function addNewRow() {
+  const table = document.querySelector('table');
+  const newRow = table.insertRow(-1);
+  addBox(newRow.insertCell(0), '1000', 'red');
+  addBox(newRow.insertCell(1), '1100', 'blue');
+  addBox(newRow.insertCell(2), '1200', 'brown');
 }
